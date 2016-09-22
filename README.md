@@ -1,3 +1,9 @@
+To install:
+
+```
+npm install json-schema-fill-defaults --save
+```
+
 After calling:
 ```
 import autoDefaults from 'json-schema-fill-defaults';
