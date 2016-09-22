@@ -1,5 +1,7 @@
 After calling:
 ```
+import autoDefaults from 'json-schema-fill-defaults';
+
 autoDefaults(data, schema)
 ```
 
