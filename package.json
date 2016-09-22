@@ -1,0 +1,30 @@
+{
+  "name": "json-schema-fill-defaults",
+  "version": "1.0.0",
+  "description": "Uses JSON Schema to fill in missing required values that have a default value.",
+  "main": "bundle.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "babel index.js --out-file bundle.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/harmvandendorpel/json-schema-fill-defaults.git"
+  },
+  "keywords": [
+    "json",
+    "schema",
+    "defaults"
+  ],
+  "author": "Harm van den Dorpel <harmvandendorpel@gmail.com>",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/harmvandendorpel/json-schema-fill-defaults/issues"
+  },
+  "homepage": "https://github.com/harmvandendorpel/json-schema-fill-defaults#readme",
+  "devDependencies": {
+    "babel-cli": "^6.14.0",
+    "babel-preset-es2015": "^6.14.0",
+    "babel-preset-stage-0": "^6.5.0"
+  }
+}
