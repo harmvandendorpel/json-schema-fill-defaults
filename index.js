@@ -26,11 +26,15 @@ export default function autoDefaults(data, schema) {
           }
         });
         break;
-    
+  
       case 'array':
-        node.forEach(item =>
-          complementSchema(item, schemaNode.items)
-        );
+        if (node.constructor === Array) {
+          node.forEach(item =>
+            complementSchema(item, schemaNode.items)
+          );
+        } else {
+          node = setDefault(schemaNode); // eslint-disable-line no-param-reassign
+        }
         break;
       
       default:

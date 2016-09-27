@@ -36,9 +36,13 @@ function autoDefaults(data, schema) {
         break;
 
       case 'array':
-        node.forEach(function (item) {
-          return complementSchema(item, schemaNode.items);
-        });
+        if (node.constructor === Array) {
+          node.forEach(function (item) {
+            return complementSchema(item, schemaNode.items);
+          });
+        } else {
+          node = setDefault(schemaNode); // eslint-disable-line no-param-reassign
+        }
         break;
 
       default:
