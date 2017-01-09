@@ -9,7 +9,7 @@ export default function autoDefaults(data, schema) {
     }
     return undefined;
   }
-  
+
   function complementSchema(node, schemaNode) {
     switch (schemaNode.type) {
       case 'object':
@@ -20,13 +20,13 @@ export default function autoDefaults(data, schema) {
               node[childNodeName] = defaultValue; // eslint-disable-line no-param-reassign
             }
           }
-            
+
           if (node[childNodeName] !== undefined) {
             complementSchema(node[childNodeName], schemaChildNode);
           }
         });
         break;
-  
+
       case 'array':
         if (node.constructor === Array) {
           node.forEach(item =>
@@ -36,11 +36,11 @@ export default function autoDefaults(data, schema) {
           node = setDefault(schemaNode); // eslint-disable-line no-param-reassign
         }
         break;
-      
+
       default:
         node = setDefault(schemaNode); // eslint-disable-line no-param-reassign
     }
   }
-  
+
   complementSchema(data, schema);
 }
