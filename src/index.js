@@ -3,8 +3,7 @@ function forOwn(object, callback) {
 }
 
 export default function autoDefaults(schema, data) {
-  console.log('input data = ', JSON.stringify(data));
-  function processNode(schemaNode, dataNode, propertyName) {
+  function processNode(schemaNode, dataNode) {
     switch (schemaNode.type) {
       case 'object':
         return processObject(schemaNode, dataNode);
@@ -20,16 +19,25 @@ export default function autoDefaults(schema, data) {
   function processObject(schemaNode, dataNode) {
     const result = {};
     forOwn(schemaNode.properties, (propertySchema, propertyName) => {
-      if (propertySchema.required || dataNode[propertyName] !== undefined) {
+      if (
+        propertySchema.required ||
+        (dataNode !== undefined && dataNode[propertyName] !== undefined)) {
         const nodeValue = dataNode !== undefined ? dataNode[propertyName] : undefined;
-        result[propertyName] = processNode(propertySchema, nodeValue, propertyName);
+        result[propertyName] = processNode(propertySchema, nodeValue);
       }
     });
     return result;
   }
 
   function processArray(schemaNode, dataNode) {
-    if (dataNode === undefined) return undefined;
+    if (dataNode === undefined) {
+      if (schemaNode.default) {
+        return schemaNode.default;
+      }
+
+      return undefined;
+    }
+
     const result = [];
 
     for (let i = 0; i < dataNode.length; i++) {
