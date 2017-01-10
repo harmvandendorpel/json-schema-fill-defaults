@@ -10,7 +10,7 @@ function forOwn(object, callback) {
   });
 }
 
-function autoDefaults(schema, data) {
+function autoDefaults(data, schema) {
   function processNode(schemaNode, dataNode) {
     switch (schemaNode.type) {
       case 'object':
