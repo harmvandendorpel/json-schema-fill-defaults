@@ -1,6 +1,6 @@
 {
   "name": "json-schema-fill-defaults",
-  "version": "1.0.2",
+  "version": "2.0.0",
   "description": "Uses JSON Schema to fill in missing required values that have a default value.",
   "main": "dist/bundle.js",
   "scripts": {
