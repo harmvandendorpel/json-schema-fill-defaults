@@ -10,45 +10,41 @@ function forOwn(object, callback) {
   });
 }
 
-function autoDefaults(data, schema) {
-  function setDefault(schemaNode) {
-    if (schemaNode.required && schemaNode.default !== undefined) {
-      return schemaNode.default;
-    }
-    return undefined;
-  }
-
-  function complementSchema(node, schemaNode) {
+function autoDefaults(schema, data) {
+  console.log('input data = ', JSON.stringify(data));
+  function processNode(schemaNode, dataNode, propertyName) {
     switch (schemaNode.type) {
       case 'object':
-        forOwn(schemaNode.properties, function (schemaChildNode, childNodeName) {
-          if (node[childNodeName] === undefined) {
-            var defaultValue = setDefault(schemaChildNode);
-            if (defaultValue !== undefined) {
-              node[childNodeName] = defaultValue; // eslint-disable-line no-param-reassign
-            }
-          }
-
-          if (node[childNodeName] !== undefined) {
-            complementSchema(node[childNodeName], schemaChildNode);
-          }
-        });
-        break;
+        return processObject(schemaNode, dataNode);
 
       case 'array':
-        if (node.constructor === Array) {
-          node.forEach(function (item) {
-            return complementSchema(item, schemaNode.items);
-          });
-        } else {
-          node = setDefault(schemaNode); // eslint-disable-line no-param-reassign
-        }
-        break;
+        return processArray(schemaNode, dataNode);
 
       default:
-        node = setDefault(schemaNode); // eslint-disable-line no-param-reassign
+        return dataNode || schemaNode.default;
     }
   }
 
-  complementSchema(data, schema);
+  function processObject(schemaNode, dataNode) {
+    var result = {};
+    forOwn(schemaNode.properties, function (propertySchema, propertyName) {
+      if (propertySchema.required || dataNode[propertyName] !== undefined) {
+        var nodeValue = dataNode !== undefined ? dataNode[propertyName] : undefined;
+        result[propertyName] = processNode(propertySchema, nodeValue, propertyName);
+      }
+    });
+    return result;
+  }
+
+  function processArray(schemaNode, dataNode) {
+    if (dataNode === undefined) return undefined;
+    var result = [];
+
+    for (var i = 0; i < dataNode.length; i++) {
+      result.push(processNode(schemaNode.items, dataNode[i]));
+    }
+    return result;
+  }
+
+  return processNode(schema, data);
 }

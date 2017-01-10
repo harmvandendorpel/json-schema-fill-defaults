@@ -1,16 +1,25 @@
 const Schema = {
   type: 'object',
-  required: true,
-  additionalProperties: false,
   properties: {
-    slot1: {
-      type: 'object',
+    users: {
+      type: 'array',
       required: true,
-      properties: {
-        enabled: {
-          type: 'boolean',
-          required: true,
-          default: true
+      items: {
+        type: 'object',
+        properties: {
+          name: {
+            type: 'string',
+            required: true
+          },
+          city: {
+            type: 'string',
+            required: true
+          },
+          enabled: {
+            type: 'boolean',
+            required: true,
+            default: true
+          }
         }
       }
     }
@@ -18,3 +27,4 @@ const Schema = {
 };
 
 module.exports = Schema;
+
