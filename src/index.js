@@ -2,7 +2,7 @@ function forOwn(object, callback) {
   Object.keys(object).map(key => callback(object[key], key, object));
 }
 
-export default function autoDefaults(schema, data) {
+export default function autoDefaults(data, schema) {
   function processNode(schemaNode, dataNode) {
     switch (schemaNode.type) {
       case 'object':
