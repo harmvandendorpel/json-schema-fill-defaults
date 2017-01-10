@@ -64,7 +64,7 @@ var data = {
   exclusion: ['alk', 'bet']
 };
 
-data = autoDefaults(Schema, data);
+data = autoDefaults(data, Schema);
 
 validate(data, { verbose: true, greedy: true  });
 console.log('\n\n-------\n\n');

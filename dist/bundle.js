@@ -20,7 +20,9 @@ function autoDefaults(data, schema) {
         return processArray(schemaNode, dataNode);
 
       default:
-        return dataNode || schemaNode.default;
+        if (dataNode !== undefined) return dataNode;
+        if (schemaNode.default !== undefined) return schemaNode.default;
+        return undefined;
     }
   }
 
