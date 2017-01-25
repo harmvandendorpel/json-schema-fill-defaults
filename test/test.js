@@ -61,12 +61,13 @@ var data = {
       enabled: true
     }
   },
-  exclusion: ['alk', 'bet']
+  exclusion: ['alk', 'bet'],
+  valueNotInSchema: 'test1235'
 };
 
 data = autoDefaults(data, Schema);
 
-validate(data, { verbose: true, greedy: true  });
+validate(data, { verbose: true, greedy: true });
 console.log('\n\n-------\n\n');
 console.log(validate.errors === null ? 'Validates!' : validate.errors);
 console.log('\n\n-------');

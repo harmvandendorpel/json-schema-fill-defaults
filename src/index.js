@@ -6,10 +6,10 @@ export default function autoDefaults(data, schema) {
   function processNode(schemaNode, dataNode) {
     switch (schemaNode.type) {
       case 'object':
-        return processObject(schemaNode, dataNode);
+        return processObject(schemaNode, dataNode); // eslint-disable-line no-use-before-define
 
       case 'array':
-        return processArray(schemaNode, dataNode);
+        return processArray(schemaNode, dataNode); // eslint-disable-line no-use-before-define
 
       default:
         if (dataNode !== undefined) return dataNode;
@@ -20,6 +20,7 @@ export default function autoDefaults(data, schema) {
 
   function processObject(schemaNode, dataNode) {
     const result = {};
+
     forOwn(schemaNode.properties, (propertySchema, propertyName) => {
       if (
         propertySchema.required ||
@@ -28,6 +29,14 @@ export default function autoDefaults(data, schema) {
         result[propertyName] = processNode(propertySchema, nodeValue);
       }
     });
+
+    if (dataNode) {
+      forOwn(dataNode, (propertyValue, propertyName) => {
+        if (result[propertyName] === undefined && propertyValue !== undefined) {
+          result[propertyName] = propertyValue;
+        }
+      });
+    }
     return result;
   }
 

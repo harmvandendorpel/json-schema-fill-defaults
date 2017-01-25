@@ -289,7 +289,8 @@ const validateEmbedConfigSpec = {
     keywords: requiredStringArray,
     custom: keyValuePairsArray,
     exclusion: requiredStringArray,
-    advertiser: optionalString
+    advertiser: optionalString,
+    valueNotInSchema: optionalString
   }
 };
 
