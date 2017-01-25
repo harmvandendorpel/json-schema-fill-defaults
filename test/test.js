@@ -18,7 +18,7 @@ var data = {
   taxonomy: {
     affiliate: 'sample',
     channels: ['sport', 'fussball', 'bundesliga'],
-    content: 'video'
+    content: 'c'
   },
   custom: [
     {
@@ -57,7 +57,7 @@ var data = {
         value: ['cars', 'holiday', 'sports']
       }]
     },
-    inread1: {
+    performance2: {
       enabled: true
     }
   },

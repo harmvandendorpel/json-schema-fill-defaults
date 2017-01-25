@@ -146,46 +146,12 @@ const displayProducts = {
   additionalProperties: false,
   default: {},
   properties: {
-    // display
-    popUp: displayProduct,
-    popUnder: displayProduct,
-    flashLayer: displayProduct,
-    interstitialSpotTandem: displayProduct,
-    flashLayerTandem: displayProduct,
-    streaming: displayProduct,
-    homepageEventXXL: displayProduct,
-    banderoleAd: displayProduct,
-    baseBoard: displayProduct,
-    superBanner: displayProduct,
-    fireplace: displayProduct,
-    wallpaper: displayProduct,
-    billboard: displayProduct,
-    pushDown: displayProduct,
-    powerBanner: displayProduct,
-    wideSkyscraper: displayProduct,
-    sitebar: displayProduct,
-    doubleSitebar: displayProduct,
-    mediumRectangle: displayProduct,
-    halfPage: displayProduct,
-    mobileLayer: displayProduct,
-    mobileBanner: displayProduct,
-    mobileBanner2: displayProduct,
-    inread: displayProduct,
-    mobileInread: displayProduct,
-    mediumRectangle2: displayProduct,
-    mediumRectangle3: displayProduct,
-    mediumRectangle4: displayProduct,
-    mediumRectangle5: displayProduct,
-    mediumRectangle6: displayProduct,
     custom1: displayProduct,
     custom2: displayProduct,
     custom3: displayProduct,
     custom4: displayProduct,
     custom5: displayProduct,
-    custom6: displayProduct,
-    sponsorLabel1: displayProduct,
-    sponsorLabel2: displayProduct,
-    sponsorLabel3: displayProduct
+    custom6: displayProduct
   }
 };
 
@@ -194,29 +160,12 @@ const display = {
   type: 'object',
   additionalProperties: false,
   properties: {
-    popup1: displaySlot,
-    fullbanner2: displaySlot,
-    skyscraper1: displaySlot,
-    rectangle1: displaySlot,
-    mlayer1: displaySlot,
-    mbanner1: displaySlot,
-    mbanner2: displaySlot,
-    inread1: displaySlot,
-    minread1: displaySlot,
-    promo1: displaySlot,
-    promo2: displaySlot,
-    promo3: displaySlot,
-    promo4: displaySlot,
-    promo5: displaySlot,
     performance1: displaySlot,
     performance2: displaySlot,
     performance3: displaySlot,
     performance4: displaySlot,
     performance5: displaySlot,
-    performance6: displaySlot,
-    ateaser: displaySlot,
-    bteaser: displaySlot,
-    cteaser: displaySlot
+    performance6: displaySlot
   }
 };
 
@@ -238,7 +187,7 @@ const taxonomy = {
     affiliate: requiredString,
     channels: requiredStringArray,
     content: {
-      enum: ['content', 'gallery', 'video', 'liveticker']
+      enum: ['a', 'b', 'c', 'd']
     }
   }
 };
@@ -251,19 +200,19 @@ const config = {
     host: {
       type: 'string',
       required: true,
-      default: '//ad.71i.de/somtag/'
+      default: 'test value 12345'
     },
     corePath: {
       type: 'string',
       required: true,
-      default: 'core/video-only/video-only.adtec-core.js'
+      default: 'test value 12345'
     },
     uuIdIframePath: {
       type: 'string',
       required: true,
-      default: 'core/video-only/uuid.html'
+      default: 'test value 12345'
     },
-    id: { // this is used to construct the sitescript url
+    id: {
       type: 'string',
       required: true
     }
